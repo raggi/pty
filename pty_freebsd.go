@@ -2,6 +2,7 @@ package pty
 
 import (
 	"errors"
+  "errors"
 	"os"
 	"syscall"
 	"unsafe"
@@ -15,6 +16,10 @@ func posix_openpt(oflag int) (fd int, err error) {
 	}
 	return
 }
+
+var (
+	ErrUnsupported = errors.New("Unsupported")
+)
 
 func open() (pty, tty *os.File, err error) {
 	fd, err := posix_openpt(syscall.O_RDWR | syscall.O_CLOEXEC)
@@ -70,4 +75,8 @@ func ptsname(f *os.File) (string, error) {
 		}
 	}
 	return "", errors.New("FIODGNAME string not NUL-terminated")
+}
+
+func setsize(f *os.File, rows uint16, cols uint16) error {
+  return ErrUnsupported
 }
