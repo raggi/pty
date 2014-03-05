@@ -2,7 +2,6 @@ package pty
 
 import (
 	"errors"
-  "errors"
 	"os"
 	"syscall"
 	"unsafe"
@@ -78,5 +77,5 @@ func ptsname(f *os.File) (string, error) {
 }
 
 func setsize(f *os.File, rows uint16, cols uint16) error {
-  return ErrUnsupported
+	return ErrUnsupported
 }
