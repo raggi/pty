@@ -1,7 +1,6 @@
 package pty
 
 import (
-	"errors"
 	"os"
 	"strconv"
 	"syscall"
@@ -11,10 +10,6 @@ import (
 var (
 	ioctl_TIOCGPTN   = _IOR('T', 0x30, unsafe.Sizeof(_C_uint(0))) /* Get Pty Number (of pty-mux device) */
 	ioctl_TIOCSPTLCK = _IOW('T', 0x31, unsafe.Sizeof(_C_int(0)))  /* Lock/unlock Pty */
-)
-
-var (
-	ErrUnsupported = errors.New("Unsupported")
 )
 
 func open() (pty, tty *os.File, err error) {
